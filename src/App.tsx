@@ -1,31 +1,36 @@
 import React from 'react';
 import './styles/App.css';
 import { useState } from 'react';
-import { SourceMap } from 'module';
 
 function App() {
 
   type Operator = "+" | "-" | "*" | "/" | ".";
-  
-
   const [state, setState] = useState("");
+  let lastVal = state.substr(state.length-1, 1);
 
   function deleteChar() {
     setState(state.substring(0, state.length - 1))
   }; 
   
-  // (state.slice(-1) !== "+" || "-" || "*" || "/")
-
   function AddOperator(operator: Operator) {
-    if (state !== ""){
+    if (state !== "" && !((lastVal === "+" ) || (lastVal === "-" ) || (lastVal === "*" ) || (lastVal === "/" || (lastVal === ".")))){
       setState(state + operator)
-      console.log(state.slice(-1))
     }
-
   };
 
-  function resolve(){
-    alert("RESULT: " + eval(state));
+  function resolve2(){
+    try {
+      let newa = eval(state); // eslint-disable-line
+      if (newa == "Infinity"){
+        alert("Invalid argument " + setState(""));
+        setState("");
+      }else{
+        setState(String (newa));
+      }
+    }catch(e){
+      alert("Invalid argument");
+      setState("");
+    }
   }
 
   return (
@@ -52,19 +57,19 @@ function App() {
       </div>
 
       <div className='row-calculator'>
-        <button className='button' onClick={() => AddOperator(".")}>.</button>
+        <button className='button' onClick={() => resolve2()}>=</button>
         <button className='button' onClick={() => setState(state + "0")}>0</button>
+        <button className='button' onClick={() => AddOperator(".")}>.</button>
         <button className='button' onClick={() => AddOperator("/")}>/</button>
-        <button className='button' onClick={() => resolve()}>=</button>
       </div>
 
       <div className='row-calculator'>
         <button className='button' onClick={() => deleteChar()}>DEL</button>
-        <button className='special-button' onClick={() => setState("")}>RST</button>
+        <button className='special-button' onClick={() => setState("")}>RESET</button>
       </div>
 
       <div className='input-container'>
-        <input className='calc' type='text' placeholder='Resultado' value={state} readOnly></input>
+        <input className='input' type='text' placeholder='Resultado' value={state} readOnly></input>
       </div>
 
     </div>
