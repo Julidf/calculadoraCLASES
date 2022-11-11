@@ -13,23 +13,29 @@ function App() {
   }; 
   
   function AddOperator(operator: Operator) {
-    if (state !== "" && !((lastVal === "+" ) || (lastVal === "-" ) || (lastVal === "*" ) || (lastVal === "/" || (lastVal === ".")))){
+    if (state !== "" && !isOperator(lastVal)){
       setState(state + operator)
     }
   };
 
-  function resolve2(){
-    try {
-      let newa = eval(state); // eslint-disable-line
-      if (newa == "Infinity"){
-        alert("Invalid argument " + setState(""));
+  const isOperator = (lastValue: string) => {
+    return (lastValue === "+" ) || (lastValue === "-" ) || (lastValue === "*" ) || (lastValue === "/") || (lastValue === ".")
+  }
+
+  function resolve(){
+    if (!isOperator(lastVal) && state !== ""){
+      try {
+        let finalValue = eval(state); // eslint-disable-line
+        if (finalValue == "Infinity"){
+          alert("Invalid argument " + setState(""));
+          setState("");
+        }else{  
+          setState(String (finalValue));
+        }
+      }catch(e){
+        alert("Invalid argument");
         setState("");
-      }else{
-        setState(String (newa));
       }
-    }catch(e){
-      alert("Invalid argument");
-      setState("");
     }
   }
 
@@ -57,7 +63,7 @@ function App() {
       </div>
 
       <div className='row-calculator'>
-        <button className='button' onClick={() => resolve2()}>=</button>
+        <button className='button' onClick={() => resolve()}>=</button>
         <button className='button' onClick={() => setState(state + "0")}>0</button>
         <button className='button' onClick={() => AddOperator(".")}>.</button>
         <button className='button' onClick={() => AddOperator("/")}>/</button>

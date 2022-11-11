@@ -19,14 +19,16 @@
   background-color: #1b1b32;
   color: white;
   border: 2px solid white;
-  border-radius: 25px;
+  border-radius: 35px;
   margin: 4px;
   cursor: pointer;
   user-select: none;
+  transition-duration: 0.4s;
 }
 
 button:hover {
-  color: red;
+  background-color: #4CAF50; /* Green */
+  color: white;
 }
 
 .special-button {
@@ -43,10 +45,11 @@ button:hover {
   margin: 4px;
   cursor: pointer;
   user-select: none;
+  transition-duration: 0.4s;
 }
 
 .input {
-  background-color: #063536;
+  background-color: #6ca36d;
   margin: 10px;
   height: 50px;
   width: 265px;
