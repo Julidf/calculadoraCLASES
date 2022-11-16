@@ -31,6 +31,23 @@ button:hover {
   color: white;
 }
 
+.equal {
+  background-color: #4CAF50;
+  height: 50px;
+  width: 65px;
+  flex: 1 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 35px;
+  margin: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition-duration: 0.4s;
+}
+
 .special-button {
   height: 50px;
   width: 150px;
@@ -48,10 +65,19 @@ button:hover {
   transition-duration: 0.4s;
 }
 
-.input {
+.first-number {
+  text-align: right;
   background-color: #6ca36d;
   margin: 10px;
-  height: 50px;
+  height: 40px;
+  width: 265px;
+  font-size: 25px;
+}
+
+.second-number {
+  text-align: right;
+  margin: 10px;
+  height: 40px;
   width: 265px;
   font-size: 25px;
 }
